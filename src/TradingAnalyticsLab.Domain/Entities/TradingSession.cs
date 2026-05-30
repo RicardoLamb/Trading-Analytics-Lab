@@ -1,6 +1,8 @@
+using TradingAnalyticsLab.Domain.Common;
+
 namespace TradingAnalyticsLab.Domain.Entities;
 
-public class TradingSession
+public class TradingSession : AuditableEntity
 {
     public Guid SessionId { get; private set; }
 
@@ -28,5 +30,7 @@ public class TradingSession
     public void UpdateNotes(string notes)
     {
         Notes = notes;
+
+        MarkAsUpdated();
     }
 }

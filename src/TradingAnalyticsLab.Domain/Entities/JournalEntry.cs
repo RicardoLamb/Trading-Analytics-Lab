@@ -1,14 +1,14 @@
+using TradingAnalyticsLab.Domain.Common;
+
 namespace TradingAnalyticsLab.Domain.Entities;
 
-public class JournalEntry
+public class JournalEntry : AuditableEntity
 {
     public Guid EntryId { get; private set; }
 
     public Guid SessionId { get; private set; }
 
     public string Content { get; private set; } = string.Empty;
-
-    public DateTime CreatedAt { get; private set; }
 
     private JournalEntry()
     {
@@ -23,7 +23,5 @@ public class JournalEntry
         SessionId = sessionId;
 
         Content = content;
-
-        CreatedAt = DateTime.UtcNow;
     }
 }
