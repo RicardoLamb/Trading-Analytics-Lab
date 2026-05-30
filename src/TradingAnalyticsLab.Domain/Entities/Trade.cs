@@ -1,4 +1,5 @@
 using TradingAnalyticsLab.Domain.Enums;
+using TradingAnalyticsLab.Domain.Common;
 
 namespace TradingAnalyticsLab.Domain.Entities;
 
@@ -39,6 +40,18 @@ public class Trade
         int quantity,
         Guid? setupId = null)
     {
+        if (sessionId == Guid.Empty)
+            throw new DomainException("SessionId is required.");
+
+        if (string.IsNullOrWhiteSpace(symbol))
+            throw new DomainException("Symbol is required.");
+
+        if (quantity <= 0)
+            throw new DomainException("Quantity must be greater than zero.");
+
+        if (exitTime < entryTime)
+            throw new DomainException("Exit time cannot be before entry time.");
+
         TradeId = Guid.NewGuid();
 
         SessionId = sessionId;

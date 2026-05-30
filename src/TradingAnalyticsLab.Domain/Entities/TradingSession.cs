@@ -21,6 +21,9 @@ public class TradingSession : AuditableEntity
         DateOnly tradingDate,
         string? notes = null)
     {
+        if (accountId == Guid.Empty)
+            throw new DomainException("AccountId is required.");
+            
         SessionId = Guid.NewGuid();
         AccountId = accountId;
         TradingDate = tradingDate;
@@ -29,6 +32,9 @@ public class TradingSession : AuditableEntity
 
     public void UpdateNotes(string notes)
     {
+        if (string.IsNullOrWhiteSpace(notes))
+            throw new DomainException("Notes cannot be empty.");
+
         Notes = notes;
 
         MarkAsUpdated();

@@ -1,3 +1,5 @@
+using TradingAnalyticsLab.Domain.Common;
+
 namespace TradingAnalyticsLab.Domain.Entities;
 
 public class TradingAccount
@@ -19,6 +21,12 @@ public class TradingAccount
         string brokerName,
         string accountNumber)
     {
+        if (string.IsNullOrWhiteSpace(brokerName))
+            throw new DomainException("Broker name is required.");
+
+        if (string.IsNullOrWhiteSpace(accountNumber))
+            throw new DomainException("Account number is required.");
+
         AccountId = Guid.NewGuid();
         TraderId = traderId;
         BrokerName = brokerName;

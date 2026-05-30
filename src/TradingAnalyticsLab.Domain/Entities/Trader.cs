@@ -16,6 +16,12 @@ public class Trader : AuditableEntity
 
     public Trader(string name, string email)
     {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new DomainException("Trader name is required.");
+
+        if (string.IsNullOrWhiteSpace(email))
+            throw new DomainException("Trader email is required.");        
+            
         TraderId = Guid.NewGuid();
         Name = name;
         Email = email;

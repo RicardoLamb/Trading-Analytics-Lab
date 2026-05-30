@@ -18,6 +18,9 @@ public class JournalEntry : AuditableEntity
         Guid sessionId,
         string content)
     {
+        if (string.IsNullOrWhiteSpace(content))
+            throw new DomainException("Journal content is required.");
+
         EntryId = Guid.NewGuid();
 
         SessionId = sessionId;

@@ -22,4 +22,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\TradingAnalyticsLab.Domain\TradingAnalyticsLab.Domain.csproj" />
+    <ProjectReference Include="..\..\src\TradingAnalyticsLab.Application\TradingAnalyticsLab.Application.csproj" />
+  </ItemGroup>
+
 </Project>

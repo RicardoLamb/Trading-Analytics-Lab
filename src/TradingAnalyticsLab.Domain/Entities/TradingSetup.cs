@@ -1,3 +1,5 @@
+using TradingAnalyticsLab.Domain.Common;
+
 namespace TradingAnalyticsLab.Domain.Entities;
 
 public class TradingSetup
@@ -16,6 +18,9 @@ public class TradingSetup
         string name,
         string description)
     {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new DomainException("Setup name is required.");
+
         SetupId = Guid.NewGuid();
         Name = name;
         Description = description;
