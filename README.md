@@ -64,6 +64,19 @@ Provide visibility into:
 
 ## Core Features
 
+## Domain Model
+
+The platform is built around the following core domain concepts:
+
+- Trader
+- Trading Account
+- Trading Session
+- Trade
+- Trading Setup
+- Journal Entry
+
+These entities support performance analytics, behavioral analysis, and trading intelligence workflows.
+
 ### Trade Import
 
 Import trading history from CSV files exported from trading platforms.
@@ -110,7 +123,34 @@ The project follows modern software architecture principles:
 
 ---
 
+## Architecture Diagram
+
+flowchart TD
+
+Trader --> TradingAccount
+TradingAccount --> TradingSession
+TradingSession --> Trade
+TradingSession --> JournalEntry
+Trade --> TradingSetup
+
 ## Technology Stack
+
+## Current Progress
+
+### Phase 1 - Domain Design
+
+- [x] Product Vision
+- [x] Domain Definition
+- [ ] ERD
+- [ ] Architecture Decisions
+- [ ] API Foundation
+
+### Phase 2 - Analytics Engine
+
+- [ ] Trade Import
+- [ ] Performance Metrics
+- [ ] Setup Analytics
+- [ ] Time Analytics
 
 ### Backend
 
