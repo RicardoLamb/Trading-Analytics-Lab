@@ -141,8 +141,8 @@ Trade --> TradingSetup
 
 - [x] Product Vision
 - [x] Domain Definition
-- [ ] ERD
-- [ ] Architecture Decisions
+- [x] ERD
+- [x] Architecture Decisions
 - [ ] API Foundation
 
 ### Phase 2 - Analytics Engine
