@@ -12,6 +12,10 @@ public class TradingSession : AuditableEntity
 
     public string? Notes { get; private set; }
 
+    private readonly List<Trade> _trades = new();
+
+    public IReadOnlyCollection<Trade> Trades => _trades;    
+
     private TradingSession()
     {
     }
@@ -39,4 +43,26 @@ public class TradingSession : AuditableEntity
 
         MarkAsUpdated();
     }
+
+    public void AddTrade(Trade trade)
+    {
+        _trades.Add(trade);
+
+        MarkAsUpdated();
+    }    
+
+    public decimal GetNetResult()
+    {
+        return _trades.Sum(x => x.NetResult);
+    }    
+
+    public decimal GetWinRate()
+    {
+        if (!_trades.Any())
+            return 0;
+
+        var winners = _trades.Count(x => x.IsWinner);
+
+        return (decimal)winners / _trades.Count * 100;
+    }    
 }

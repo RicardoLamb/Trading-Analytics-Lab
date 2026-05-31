@@ -73,4 +73,36 @@ public class Trade
     {
         SetupId = setupId;
     }
+
+    public TimeSpan Duration
+    {
+        get
+        {
+            return ExitTime - EntryTime;
+        }
+    }    
+
+    public bool IsWinner
+    {
+        get
+        {
+            return NetResult > 0;
+        }
+    }
+
+    public bool IsLoser
+    {
+        get
+        {
+            return NetResult < 0;
+        }
+    }    
+
+    public bool IsBreakEven
+    {
+        get
+        {
+            return NetResult == 0;
+        }
+    }
 }
