@@ -2,8 +2,7 @@ using TradingAnalyticsLab.Application.Abstractions.Persistence;
 
 namespace TradingAnalyticsLab.Infrastructure.Persistence;
 
-public class UnitOfWork
-    : IUnitOfWork
+public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly TradingAnalyticsLabDbContext _context;
 
@@ -13,10 +12,10 @@ public class UnitOfWork
         _context = context;
     }
 
-    public async Task<int> SaveChangesAsync(
+    public Task<int> SaveChangesAsync(
         CancellationToken cancellationToken = default)
     {
-        return await _context.SaveChangesAsync(
+        return _context.SaveChangesAsync(
             cancellationToken);
     }
 }
