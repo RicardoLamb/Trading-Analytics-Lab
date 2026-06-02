@@ -22,4 +22,8 @@ public interface ITraderRepository
     Task UpdateAsync(
         Trader trader,
         CancellationToken cancellationToken = default);
+
+    Task DeleteAsync(
+        Trader trader,
+        CancellationToken cancellationToken = default);
 }

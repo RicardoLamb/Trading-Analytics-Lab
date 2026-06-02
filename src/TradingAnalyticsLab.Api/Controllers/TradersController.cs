@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TradingAnalyticsLab.Api.Contracts.Traders;
 using TradingAnalyticsLab.Application.Features.Traders.Commands.CreateTrader;
+using TradingAnalyticsLab.Application.Features.Traders.Commands.DeleteTrader;
 using TradingAnalyticsLab.Application.Features.Traders.Commands.UpdateTrader;
 using TradingAnalyticsLab.Application.Features.Traders.Queries.GetAllTraders;
 using TradingAnalyticsLab.Application.Features.Traders.Queries.GetTraderById;
@@ -67,6 +68,20 @@ public class TradersController : ControllerBase
                     id,
                     request.Name,
                     request.Email));
+
+        if (!result)
+            return NotFound();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(
+        Guid id)
+    {
+        var result =
+            await _sender.Send(
+                new DeleteTraderCommand(id));
 
         if (!result)
             return NotFound();

@@ -61,4 +61,13 @@ public class TraderRepository
 
         return Task.CompletedTask;
     }
+
+    public Task DeleteAsync(
+        Trader trader,
+        CancellationToken cancellationToken = default)
+    {
+        _context.Traders.Remove(trader);
+
+        return Task.CompletedTask;
+    }
 }
