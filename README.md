@@ -116,12 +116,22 @@ The project follows modern software architecture principles:
 
 - Clean Architecture
 - Domain-Driven Design (DDD)
+- src/
+  ├── TradingAnalyticsLab.Api
+  │
+  ├── TradingAnalyticsLab.Application
+  │ └── Features
+  │ ├── Traders
+  │ ├── TradingSessions
+  │ └── Analytics
+  │
+  ├── TradingAnalyticsLab.Domain
+  │
+  └── TradingAnalyticsLab.Infrastructure
 - CQRS
 - SOLID Principles
 - Infrastructure as Code (future)
 - Cloud-Native Ready
-
----
 
 ## Architecture Diagram
 
@@ -134,6 +144,44 @@ TradingSession --> JournalEntry
 Trade --> TradingSetup
 
 ## Technology Stack
+
+- .NET 8
+- ASP.NET Core
+- Entity Framework Core
+- PostgreSQL
+- Docker
+- xUnit
+- Clean Architecture
+- CQRS
+- DDD
+
+## Current Status
+
+The project is currently under active development.
+
+### Completed
+
+- [x] Domain Modeling
+- [x] ERD and Physical Data Model
+- [x] Architecture Decision Records (ADRs)
+- [x] Clean Architecture Solution Structure
+- [x] Domain Layer
+- [x] Unit Tests
+- [x] Application Layer Foundation
+- [x] CQRS Folder Structure
+- [x] PostgreSQL Integration
+- [x] Docker Environment
+- [x] Entity Framework Core Configuration
+- [x] Initial Database Migration
+
+### In Progress
+
+- [ ] Repository Pattern
+- [ ] Unit Of Work
+- [ ] REST API Endpoints
+- [ ] Swagger Documentation
+- [ ] Authentication & Authorization
+- [ ] Trading Analytics Engine
 
 ## Current Progress
 
@@ -160,6 +208,19 @@ Trade --> TradingSetup
 ### Database
 
 - PostgreSQL
+
+## Database Model
+
+Current domain entities:
+
+- Trader
+- TradingAccount
+- TradingSession
+- Trade
+- TradingSetup
+- JournalEntry
+
+The database schema is managed through Entity Framework Core Migrations.
 
 ### Messaging
 
