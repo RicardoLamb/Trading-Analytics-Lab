@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TradingAnalyticsLab.Infrastructure.Persistence;
 using TradingAnalyticsLab.Infrastructure;
+using TradingAnalyticsLab.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<TradingAnalyticsLabDbContext>(
             builder.Configuration.GetConnectionString(
                 "DefaultConnection"));
     });
+builder.Services.AddApplication();
 
 builder.Services.AddInfrastructure(
     builder.Configuration);    

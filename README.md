@@ -173,11 +173,11 @@ The project is currently under active development.
 - [x] Docker Environment
 - [x] Entity Framework Core Configuration
 - [x] Initial Database Migration
+- [x] Repository Pattern
+- [x] Unit Of Work
 
 ### In Progress
 
-- [ ] Repository Pattern
-- [ ] Unit Of Work
 - [ ] REST API Endpoints
 - [ ] Swagger Documentation
 - [ ] Authentication & Authorization
