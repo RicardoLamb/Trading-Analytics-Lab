@@ -8,14 +8,18 @@ public interface ITraderRepository
         Trader trader,
         CancellationToken cancellationToken = default);
 
-    Task<Trader?> GetByIdAsync(
-        Guid traderId,
-        CancellationToken cancellationToken = default);
-
     Task<bool> ExistsByEmailAsync(
         string email,
         CancellationToken cancellationToken = default);
 
+    Task<Trader?> GetByIdAsync(
+        Guid traderId,
+        CancellationToken cancellationToken = default);
+
     Task<List<Trader>> GetAllAsync(
+        CancellationToken cancellationToken = default);
+
+    Task UpdateAsync(
+        Trader trader,
         CancellationToken cancellationToken = default);
 }

@@ -20,10 +20,21 @@ public class Trader : AuditableEntity
             throw new DomainException("Trader name is required.");
 
         if (string.IsNullOrWhiteSpace(email))
-            throw new DomainException("Trader email is required.");        
-            
+            throw new DomainException("Trader email is required.");
+
         TraderId = Guid.NewGuid();
         Name = name;
         Email = email;
+    }
+
+    public void Update(
+        string name,
+        string email)
+    {
+        Name = name;
+
+        Email = email;
+
+        MarkAsUpdated();
     }
 }

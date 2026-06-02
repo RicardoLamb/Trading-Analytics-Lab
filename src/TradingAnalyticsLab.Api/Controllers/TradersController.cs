@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TradingAnalyticsLab.Api.Contracts.Traders;
 using TradingAnalyticsLab.Application.Features.Traders.Commands.CreateTrader;
+using TradingAnalyticsLab.Application.Features.Traders.Commands.UpdateTrader;
 using TradingAnalyticsLab.Application.Features.Traders.Queries.GetAllTraders;
 using TradingAnalyticsLab.Application.Features.Traders.Queries.GetTraderById;
 
@@ -52,5 +54,23 @@ public class TradersController : ControllerBase
                 new GetAllTradersQuery());
 
         return Ok(traders);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(
+        Guid id,
+        UpdateTraderRequest request)
+    {
+        var result =
+            await _sender.Send(
+                new UpdateTraderCommand(
+                    id,
+                    request.Name,
+                    request.Email));
+
+        if (!result)
+            return NotFound();
+
+        return NoContent();
     }
 }

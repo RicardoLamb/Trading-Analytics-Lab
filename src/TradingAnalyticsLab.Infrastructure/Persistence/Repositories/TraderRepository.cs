@@ -24,16 +24,6 @@ public class TraderRepository
             cancellationToken);
     }
 
-    public async Task<Trader?> GetByIdAsync(
-        Guid traderId,
-        CancellationToken cancellationToken = default)
-    {
-        return await _context.Traders
-            .FirstOrDefaultAsync(
-                x => x.TraderId == traderId,
-                cancellationToken);
-    }
-
     public async Task<bool> ExistsByEmailAsync(
         string email,
         CancellationToken cancellationToken = default)
@@ -44,6 +34,16 @@ public class TraderRepository
                 cancellationToken);
     }
 
+    public async Task<Trader?> GetByIdAsync(
+        Guid traderId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Traders
+            .FirstOrDefaultAsync(
+                x => x.TraderId == traderId,
+                cancellationToken);
+    }
+
     public async Task<List<Trader>> GetAllAsync(
         CancellationToken cancellationToken = default)
     {
@@ -51,5 +51,14 @@ public class TraderRepository
             .AsNoTracking()
             .OrderBy(x => x.Name)
             .ToListAsync(cancellationToken);
+    }
+
+    public Task UpdateAsync(
+        Trader trader,
+        CancellationToken cancellationToken = default)
+    {
+        _context.Traders.Update(trader);
+
+        return Task.CompletedTask;
     }
 }
