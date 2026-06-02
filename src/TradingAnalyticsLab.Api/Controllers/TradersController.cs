@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TradingAnalyticsLab.Application.Features.Traders.Commands.CreateTrader;
+using TradingAnalyticsLab.Application.Features.Traders.Queries.GetAllTraders;
 using TradingAnalyticsLab.Application.Features.Traders.Queries.GetTraderById;
 
 namespace TradingAnalyticsLab.Api.Controllers;
@@ -41,5 +42,15 @@ public class TradersController : ControllerBase
             return NotFound();
 
         return Ok(trader);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var traders =
+            await _sender.Send(
+                new GetAllTradersQuery());
+
+        return Ok(traders);
     }
 }

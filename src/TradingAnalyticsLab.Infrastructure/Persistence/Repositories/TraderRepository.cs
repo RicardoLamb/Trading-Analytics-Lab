@@ -43,4 +43,13 @@ public class TraderRepository
                 x => x.Email == email,
                 cancellationToken);
     }
+
+    public async Task<List<Trader>> GetAllAsync(
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Traders
+            .AsNoTracking()
+            .OrderBy(x => x.Name)
+            .ToListAsync(cancellationToken);
+    }
 }

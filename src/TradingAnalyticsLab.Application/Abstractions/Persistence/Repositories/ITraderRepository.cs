@@ -15,4 +15,7 @@ public interface ITraderRepository
     Task<bool> ExistsByEmailAsync(
         string email,
         CancellationToken cancellationToken = default);
+
+    Task<List<Trader>> GetAllAsync(
+        CancellationToken cancellationToken = default);
 }
