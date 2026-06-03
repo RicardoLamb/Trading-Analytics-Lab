@@ -23,6 +23,8 @@ public static class DependencyInjection
 
         services.AddScoped<ITraderRepository, TraderRepository>();
 
+        services.AddScoped<ITradingAccountRepository, TradingAccountRepository>();
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;

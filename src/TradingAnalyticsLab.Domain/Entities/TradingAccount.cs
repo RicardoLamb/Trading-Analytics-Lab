@@ -2,7 +2,7 @@ using TradingAnalyticsLab.Domain.Common;
 
 namespace TradingAnalyticsLab.Domain.Entities;
 
-public class TradingAccount
+public class TradingAccount : AuditableEntity
 {
     public Guid AccountId { get; private set; }
 
@@ -31,5 +31,16 @@ public class TradingAccount
         TraderId = traderId;
         BrokerName = brokerName;
         AccountNumber = accountNumber;
+    }
+
+    public void Update(
+        string brokerName,
+        string accountNumber)
+    {
+        BrokerName = brokerName;
+
+        AccountNumber = accountNumber;
+
+        MarkAsUpdated();
     }
 }
