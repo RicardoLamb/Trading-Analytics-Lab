@@ -1,31 +1,32 @@
 # Trading Analytics Lab
 
-Transforming raw trading data into actionable insights through performance analytics and behavioral intelligence.
-
-## Overview
-
-Trading Analytics Lab is a platform designed to help day traders understand their operational performance by transforming trading history into meaningful metrics, analytics, and insights.
-
-The platform focuses on answering questions such as:
-
-- What setups generate the best results?
-- What trading hours are most profitable?
-- Which patterns lead to consistent losses?
-- How does trader behavior impact performance?
-
-The long-term vision is to evolve from a performance analytics platform into an intelligent decision-support system for traders.
+Transforming raw trading data into actionable insights through performance analytics, behavioral intelligence, and data-driven decision making.
 
 ---
 
-## Vision
+## Overview
 
-Enable traders to make better decisions through data-driven performance analysis.
+Trading Analytics Lab is a backend platform designed to help day traders analyze operational performance through structured trading data, performance metrics, and behavioral insights.
+
+The project applies modern software architecture practices to build a scalable and maintainable analytics platform capable of evolving into an intelligent decision-support system.
+
+---
+
+## Business Goals
+
+The platform aims to answer questions such as:
+
+- Which setups generate the highest profitability?
+- What trading hours produce the best results?
+- Which patterns lead to recurring losses?
+- How does trader behavior affect performance?
+- Which habits separate profitable traders from losing traders?
 
 ---
 
 ## Target Audience
 
-Day Traders operating:
+Day traders operating:
 
 - WIN (Mini Index)
 - WDO (Mini Dollar)
@@ -41,177 +42,39 @@ Trading styles:
 
 ---
 
-## Goals
+# Architecture
 
-### V1
-
-Provide visibility into:
-
-- Trading Performance
-- Trading Sessions
-- Trading Setups
-- Time-Based Analytics
-- Behavioral Notes
-
-### Future Versions
-
-- Pattern Discovery
-- Behavioral Analytics
-- AI-Powered Insights
-- Automated Recommendations
-
----
-
-## Core Features
-
-## Domain Model
-
-The platform is built around the following core domain concepts:
-
-- Trader
-- Trading Account
-- Trading Session
-- Trade
-- Trading Setup
-- Journal Entry
-
-These entities support performance analytics, behavioral analysis, and trading intelligence workflows.
-
-### Trade Import
-
-Import trading history from CSV files exported from trading platforms.
-
-### Performance Dashboard
-
-Metrics:
-
-- Net Result
-- Gross Result
-- Win Rate
-- Profit Factor
-- Payoff
-- Drawdown
-
-### Time Analytics
-
-Analyze performance by:
-
-- Hour
-- Day of Week
-- Month
-
-### Setup Analytics
-
-Evaluate performance by trading strategy.
-
-### Trading Journal
-
-Record observations and behavioral notes for each trading session.
-
----
-
-## Architecture
-
-The project follows modern software architecture principles:
+The project follows enterprise-grade architectural patterns:
 
 - Clean Architecture
 - Domain-Driven Design (DDD)
-- src/
-  ├── TradingAnalyticsLab.Api
-  │
-  ├── TradingAnalyticsLab.Application
-  │ └── Features
-  │ ├── Traders
-  │ ├── TradingSessions
-  │ └── Analytics
-  │
-  ├── TradingAnalyticsLab.Domain
-  │
-  └── TradingAnalyticsLab.Infrastructure
 - CQRS
+- Repository Pattern
+- Unit of Work
 - SOLID Principles
-- Infrastructure as Code (future)
-- Cloud-Native Ready
+- Separation of Concerns
 
-## Architecture Diagram
+---
 
-flowchart TD
+## Solution Structure
 
-Trader --> TradingAccount
-TradingAccount --> TradingSession
-TradingSession --> Trade
-TradingSession --> JournalEntry
-Trade --> TradingSetup
+```text
+src
+├── TradingAnalyticsLab.Api
+├── TradingAnalyticsLab.Application
+├── TradingAnalyticsLab.Domain
+└── TradingAnalyticsLab.Infrastructure
 
-## Technology Stack
+tests
+├── TradingAnalyticsLab.UnitTests
+└── TradingAnalyticsLab.IntegrationTests
+```
 
-- .NET 8
-- ASP.NET Core
-- Entity Framework Core
-- PostgreSQL
-- Docker
-- xUnit
-- Clean Architecture
-- CQRS
-- DDD
+---
 
-## Current Status
+## Domain Model
 
-The project is currently under active development.
-
-### Completed
-
-- [x] Domain Modeling
-- [x] ERD and Physical Data Model
-- [x] Architecture Decision Records (ADRs)
-- [x] Clean Architecture Solution Structure
-- [x] Domain Layer
-- [x] Unit Tests
-- [x] Application Layer Foundation
-- [x] CQRS Folder Structure
-- [x] PostgreSQL Integration
-- [x] Docker Environment
-- [x] Entity Framework Core Configuration
-- [x] Initial Database Migration
-- [x] Repository Pattern
-- [x] Unit Of Work
-
-### In Progress
-
-- [ ] REST API Endpoints
-- [ ] Swagger Documentation
-- [ ] Authentication & Authorization
-- [ ] Trading Analytics Engine
-
-## Current Progress
-
-### Phase 1 - Domain Design
-
-- [x] Product Vision
-- [x] Domain Definition
-- [x] ERD
-- [x] Architecture Decisions
-- [ ] API Foundation
-
-### Phase 2 - Analytics Engine
-
-- [ ] Trade Import
-- [ ] Performance Metrics
-- [ ] Setup Analytics
-- [ ] Time Analytics
-
-### Backend
-
-- .NET 8
-- ASP.NET Core
-
-### Database
-
-- PostgreSQL
-
-## Database Model
-
-Current domain entities:
+Core domain entities:
 
 - Trader
 - TradingAccount
@@ -220,62 +83,184 @@ Current domain entities:
 - TradingSetup
 - JournalEntry
 
-The database schema is managed through Entity Framework Core Migrations.
+Entity relationships:
 
-### Messaging
+```text
+Trader
+ └── TradingAccount
+      └── TradingSession
+           ├── Trade
+           └── JournalEntry
 
-- RabbitMQ (future)
+Trade
+ └── TradingSetup
+```
 
-### Containerization
+---
+
+# Technology Stack
+
+Backend:
+
+- .NET 8
+- ASP.NET Core Web API
+- MediatR
+- Entity Framework Core
+
+Database:
+
+- PostgreSQL
+
+Architecture:
+
+- Clean Architecture
+- CQRS
+- DDD
+
+Testing:
+
+- xUnit
+- Moq
+
+Infrastructure:
 
 - Docker
+- Docker Compose
 
-### Observability
-
-- OpenTelemetry
-
-### Documentation
+Documentation:
 
 - Swagger / OpenAPI
 
 ---
 
-## Roadmap
+# Current Features
 
-### Phase 1
+## Traders
 
-- Domain Design
-- Database Modeling
-- API Foundation
+Implemented:
+
+- Create Trader
+- Get Trader By Id
+- Get All Traders
+- Update Trader
+- Delete Trader
+
+## Trading Accounts
+
+Implemented:
+
+- Create Trading Account
+- Get Trading Account By Id
+- Get All Trading Accounts
+
+---
+
+# Database
+
+Database management is performed through:
+
+- Entity Framework Core Migrations
+- PostgreSQL
+- Docker Containers
+
+Current entities:
+
+- traders
+- trading_accounts
+- trading_sessions
+- trades
+- trading_setups
+- journal_entries
+
+---
+
+# Development Environment
+
+Requirements:
+
+- .NET 8 SDK
+- Docker Desktop
+- PostgreSQL (via Docker)
+
+Run database:
+
+```bash
+docker compose up -d
+```
+
+Apply migrations:
+
+```bash
+dotnet ef database update \
+--project src/TradingAnalyticsLab.Infrastructure \
+--startup-project src/TradingAnalyticsLab.Api
+```
+
+Run API:
+
+```bash
+dotnet run --project src/TradingAnalyticsLab.Api
+```
+
+Swagger:
+
+```text
+https://localhost:xxxx/swagger
+```
+
+---
+
+# Roadmap
+
+## Phase 1 – Core Platform
+
+- Domain Modeling
+- CQRS Foundation
+- PostgreSQL Integration
+- REST API
+- Swagger Documentation
+
+## Phase 2 – Trading Analytics
+
 - Trade Import
-
-### Phase 2
-
-- Performance Analytics
-- Dashboard APIs
+- Performance Metrics
 - Setup Analytics
+- Time Analytics
 
-### Phase 3
+## Phase 3 – Behavioral Intelligence
 
-- Behavioral Analytics
-- Pattern Discovery
+- Trading Journal Analysis
+- Behavioral Metrics
+- Pattern Detection
 
-### Phase 4
+## Phase 4 – AI Layer
 
 - AI Trading Coach
+- Performance Recommendations
+- Behavioral Insights
+- Predictive Analytics
 
 ---
 
-## Project Status
+# Project Status
 
-🚧 In Progress
+Version: v0.1.0
 
-Currently in the Domain Design phase.
+Status: Active Development
+
+Current Focus:
+
+- Trading Session Aggregate
+- Trade Aggregate
+- Analytics Foundation
 
 ---
 
-## Author
+# Author
 
 Ricardo Lamb
 
-Software Architect | Backend Specialist | Cloud Engineer
+Backend Engineer | Solution Architect | Cloud Engineer
+
+GitHub:
+https://github.com/RicardoLamb
